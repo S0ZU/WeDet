@@ -5,14 +5,15 @@ const AppContainer = ()=>{
        <SafeAreaView>
            <ScrollView>
                 <View style={style.container}>
-                    <View>
-                        <Image style={{marginTop: 15}} resizeMode={'cover'} source={require('../Home/Images/applogo.png')}/> 
-                    </View>   
+                      
                     <View style={style.forInput}>
                         <TextInput style={style.textInput} placeholder="Search"/>
                     </View>  
                     <View>
-                        <Image style={{marginTop: 15}} resizeMode={'cover'} source={require('../Home/Images/alert.png')}/>    
+                    <Image style={{marginTop: 15}} resizeMode={'cover'} source={require('../../../assets/Images/wedet_lg.png')}/>  
+                    </View> 
+                    <View>
+                        <Image style={{marginTop: 15}} resizeMode={'cover'} source={require('../../../assets/Images/alert.png')}/>    
                     </View>                                
                 </View>
                 <View>
