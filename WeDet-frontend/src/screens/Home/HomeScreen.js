@@ -1,51 +1,104 @@
-import { SafeAreaView, ScrollView, StyleSheet, View, Text, Image, TextInput } from "react-native"
+import { SafeAreaView, ScrollView, StyleSheet, View, Image, TextInput, Text } from "react-native";
+//import { style } from './styles';
 
-const AppContainer = ()=>{
+const Home = ()=>{
     return (
        <SafeAreaView>
            <ScrollView>
-                <View style={style.container}>
-                      
-                    <View style={style.forInput}>
-                        <TextInput style={style.textInput} placeholder="Search"/>
-                    </View>  
+
+                {/* Contains the logo, the search bar & the notification icon */}
+                <View style={style.topContainer}>   
                     <View>
-                    <Image style={{marginTop: 15}} resizeMode={'cover'} source={require('../../../assets/Images/wedet_lg.png')}/>  
+                        <Image style={style.logo} resizeMode={'cover'} source={require('../../../assets/Images/wedet_lg.png')}/>  
                     </View> 
                     <View>
-                        <Image style={{marginTop: 15}} resizeMode={'cover'} source={require('../../../assets/Images/alert.png')}/>    
-                    </View>                                
+                        <TextInput style={style.textInput} underlineColorAndroid='transparent' placeholder="Search"/>
+                    </View>  
+                    <View>
+                        <Image style={style.icon} resizeMode={'cover'} source={require('../../../assets/Images/alert.png')}/>    
+                    </View>                 
                 </View>
+
+                {/* Images of vegetable fields */}
                 <View>
-                    <Text style={style.myTitle}>Home Screen</Text>
-                </View>
+                    <Image style={style.mainImage} resizeMode="cover" source={require('../../../assets/Images/vegefield.png')}/>
+                </View> 
                 
+                {/* Images of several weeds */}
+                <View style={style.bottomContainer}>
+                    <View>
+                        <Text style={{fontSize: 25, fontWeight: "bold"}}>Popular Weeds</Text>
+                    </View>
+
+                    <View style={style.weedContainer}>
+                        <View>
+                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/apple_tree.png')}/>
+                        </View> 
+                        <View>
+                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/mango_tree.png')}/>
+                        </View>                                           
+                    </View>
+
+                    <View style={style.weedContainer}>
+                        <View>
+                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/guava_tree.png')}/>
+                        </View> 
+                        <View>
+                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/cocnut_tree.png')}/>
+                        </View>                                           
+                    </View>
+                </View>     
+
             </ScrollView>
         </SafeAreaView>
     )
-}
+};
 
 const style = StyleSheet.create ({
-    container: {
-                flex: 1,
-                flexDirection: "row",
-                backgroundColor: '#fff',
-                alignItems: 'center',
-                justifyContent: 'center',
+    topContainer: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: 'center',
+        paddingTop: 40,
+        // backgroundColor: "#8fe3c3",
+        maxHeight: 120
     },
-    myTitle: {
-        fontSize: 50,
-        textAlign: 'center', 
-        marginTop: 10,
-    },
-    forInput: {
-        marginTop: 15,
-        padding: 10,
+    logo: {
+        maxHeight: 25,
+        maxWidth: 25,
+        marginTop: 20,
     }, 
+    icon: {
+        maxHeight: 25,
+        maxWidth: 25,
+        marginTop: 20,
+    },      
     textInput: {
         fontSize: 16,
         padding: 10,
+        margin: 15,
+        height: 40,
+        width: 300,
+        borderWidth: 1,
+        borderColor: "#c9ced6",
+        borderRadius: 20,
+    },
+    mainImage: {
+        height: 400,
+        borderRadius: 5
+    },
+    bottomContainer: {
+      padding: 10  
+    },
+    weedContainer: {
+        flexDirection: "row"
+    },
+    weeds: {
+        margin: 10,
+        borderRadius: 10,
+        height: 200,
+        width: 170
     }
-})
+});
 
-export default AppContainer;
+export default Home;
