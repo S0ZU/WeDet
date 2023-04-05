@@ -22,7 +22,6 @@ function Tabs() {
           backgroundColor: '#ffffff',
           borderTopLeftRadius: 25,
           borderTopRightRadius: 25,
-          height: 60,
           ...styles.shadow,
           position: 'absolute',
           backgroundColor: '#FFFFFF',
