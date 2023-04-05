@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Text,View,StyleSheet,ScrollView,Image} from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
@@ -143,4 +144,3 @@ const CartScreen = ()=>{
       
  })
 export default CartScreen;
-
