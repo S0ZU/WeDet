@@ -1,15 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, Pressable } from 'react-native';
 const Login = () => {
-    return (<SafeAreaView>
-        <ScrollView>
-            <View>
-            <Image source={require('C:\Users\ASUS\Desktop\Maduri\Maduri\WeDet\assets\Company.jpg')} style={{width:150, height:30,alignSelf:'center',marginLeft:30}} />
-            </View>
+    return(
+        <SafeAreaView>
+        
+            <ScrollView>
+                <View>
+                    <Image style={{width:200, height:50,alignSelf:'center',marginLeft:30,marginTop:60}} resizeMode={'cover'} source={require('../../../assets/Images/Company.jpg')}/>
+
+                </View>
             <View style={styles.container}>
-                <Text style={{fontSize:50, fontWeight:'bold',marginLeft:20,marginTop:10}}>Say Goodbye to Weeds</Text>
-                <Text style={{alignSelf:'flex-start', fontSize:20, paddingLeft:20,marginBottom:50,marginLeft:20}}>Keep Your Crops Flourishing</Text>
-                <Image source={require ('C:\Users\ASUS\Desktop\Maduri\Maduri\WeDet\assets\Logo.jpg')} style={{width:300, height:350,}} />
+                <Text style={{fontSize:35, fontWeight:'bold',marginLeft:20,marginTop:10,}}>Say Goodbye to Weeds</Text>
+                <Text style={{alignSelf:'flex-start', fontSize:20, paddingLeft:20,marginBottom:50,marginLeft:20,marginTop:15}}>Keep Your Crops Flourishing</Text>
+                <View>
+                    <Image style={{width:300, height:350,}} resizeMode={'cover'} source={require('../../../assets/Images/Home.png')}/>
+
+                </View>
+
                 <StatusBar style="auto" />
                 <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -17,9 +24,9 @@ const Login = () => {
               <Text style={styles.textStyle}>Get Started</Text>
             </Pressable>
             </View>
-        </ScrollView>
-    </SafeAreaView>
-
+            </ScrollView>
+        </SafeAreaView>
+        
     );
 }
 const styles = StyleSheet.create({
@@ -30,17 +37,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     button: {
-        borderRadius: 20,
-        padding: 10,
+        borderRadius: 35,
+        padding: 20,
         width: 200,
         elevation: 2,
+    
     },
     buttonClose: {
-        marginTop: 30,
-        backgroundColor: '#C8D9CE',
+        marginTop: 20,
+        backgroundColor: '#01B763',
     },
     textStyle: {
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 27 ,
+        
     }
 });
 export default Login;
