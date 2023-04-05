@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/Home/HomeScreen';
 import CartScreen from '../screens/Cart/CartScreen';
 import ItemsScreen from '../screens/Item/WeedResults';
-import LoginScreen from '../screens/Login/LoginScreen';
+import LoginScreen from '../screens/About/AboutUs';
 import CameraScreen from '../screens/Camera/CameraScreen';
 
 const Tab = createBottomTabNavigator();

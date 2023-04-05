@@ -30,7 +30,7 @@ export default function CameraScreen() {
         quality: 1
       });
       if (!result.canceled) {
-        setSelectedImage(result.uri);
+        setSelectedImage(result.assets);
         setStartCamera(false);
       }
     } else {
@@ -61,17 +61,17 @@ export default function CameraScreen() {
             onPress={__startCamera}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Take picture</Text>
+            <Text style={styles.buttonText}>Open Camera</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={__openGallery}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Open from gallery</Text>
+            <Text style={styles.buttonText}>Open Gallery</Text>
           </TouchableOpacity>
           {selectedImage && (
             <Image
-              source={{ uri: selectedImage.assets[0].uri }}
+              source={{ assets: selectedImage.assets[0].assets }}
               style={{ width: '100%', height: '80%', marginTop: 20 }}
             />
           )}
