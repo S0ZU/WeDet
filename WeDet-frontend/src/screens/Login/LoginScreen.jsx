@@ -6,14 +6,14 @@ const Login = () => {
         
             <ScrollView>
                 <View>
-                    <Image style={{width:200, height:50,alignSelf:'center',marginLeft:30,marginTop:60}} resizeMode={'cover'} source={require('../../../assets/Images/Company.jpg')}/>
+                    <Image style={{width:200, height:50,alignSelf:'center',marginLeft:30,marginTop:15,marginBottom:15}} resizeMode={'cover'} source={require('../../../assets/Images/Company.jpg')}/>
 
                 </View>
             <View style={styles.container}>
                 <Text style={{fontSize:35, fontWeight:'bold',marginLeft:20,marginTop:10,}}>Say Goodbye to Weeds</Text>
-                <Text style={{alignSelf:'flex-start', fontSize:20, paddingLeft:20,marginBottom:50,marginLeft:20,marginTop:15}}>Keep Your Crops Flourishing</Text>
+                <Text style={{alignSelf:'flex-start', fontSize:20, paddingLeft:20,marginBottom:50,marginLeft:50,marginTop:15}}>Keep Your Crops Flourishing</Text>
                 <View>
-                    <Image style={{width:300, height:350,}} resizeMode={'cover'} source={require('../../../assets/Images/Home.png')}/>
+                    <Image style={{width:300, height:350,marginBottom:40}} resizeMode={'cover'} source={require('../../../assets/Images/Home.png')}/>
 
                 </View>
 
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
         fontSize: 27 ,
+        fontWeight:'bold',
         
     }
 });
