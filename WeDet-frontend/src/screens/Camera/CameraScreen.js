@@ -150,13 +150,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 20,
     left: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#01B763',
     borderRadius: 5,
     padding: 10,
     fontWeight: 'bold',
   },
   backButtonIcon: {
     fontSize: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  backButtonText: {
+    color: '#000',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   preview: {
     flex: 1,
