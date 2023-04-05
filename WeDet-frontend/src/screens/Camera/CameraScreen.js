@@ -37,7 +37,7 @@ export default function CameraScreen() {
       });
 
       if (!result.canceled) {
-        setSelectedImage(result.uri);
+        setSelectedImage(result.assets);
         setStartCamera(false);
       }
     } catch (error) {
@@ -95,25 +95,18 @@ export default function CameraScreen() {
             onPress={__startCamera}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Take picture</Text>
+            <Text style={styles.buttonText}>Open Camera</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={__openGallery}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Open from gallery</Text>
+            <Text style={styles.buttonText}>Open Gallery</Text>
           </TouchableOpacity>
           {selectedImage && (
             <Image
-<<<<<<< Updated upstream
-              source={{ uri: selectedImage.assets[0].uri }}
+              source={{ assets: selectedImage.assets[0].assets }}
               style={{ width: '100%', height: '80%', marginTop: 20 }}
-=======
-              source={{ uri: selectedImage.uri }}
-              style={{
-                width: '100%', height: '80% ', marginTop: 20
-              }}
->>>>>>> Stashed changes
             />
           )}
 
@@ -133,14 +126,11 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 130,
-<<<<<<< Updated upstream
     borderRadius: 4,
     backgroundColor: '#14274e',
-=======
     height: 50,
     borderRadius:15,
     backgroundColor: '#01B763',
->>>>>>> Stashed changes
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
