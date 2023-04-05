@@ -1,14 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-//import your screen
-// import Home from './src/screens/Home/HomeScreen';
- import CartScreen from './src/screens/Cart/CartScreen';
+//import nav
+import Tabs from './src/navigations/AppNavigation';
 
 export default function App() {
   return (
-    // <Home/>
-    <CartScreen/>
- );
+    <NavigationContainer>
+        <Tabs />
+    </NavigationContainer>
+  );
 }
-

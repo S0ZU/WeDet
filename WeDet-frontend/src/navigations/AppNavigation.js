@@ -1,69 +1,175 @@
 import React from 'react'
-import {createStackNavigator} from '@react-navigation/stack'
-import {NavigationContainer} from '@react-navigation/native'
-import {createDrawerNavigator} from '@react-navigation/drawer' 
+
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import HomeScreen from '../screens/Home/HomeScreen';
-import CategoriesScreen from '../screens/Categories/CategoriesScreen';
-import RecipeScreen from '../screens/Recipe/RecipeScreen';
-import RecipesListScreen from '../screens/RecipesList/RecipesListScreen';
-import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
-import IngredientScreen from '../screens/Ingredient/IngredientScreen';
-import SearchScreen from '../screens/Search/SearchScreen';
-import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
+import CartScreen from '../screens/Cart/CartScreen';
+import ItemsScreen from '../screens/Item/WeedResults';
+import LoginScreen from '../screens/Login/LoginScreen';
+import CameraScreen from '../screens/Camera/CameraScreen';
 
- const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-function MainNavigator() {
-  return(
-    <Stack.Navigator
+function Tabs() {
+  return (
+    <Tab.Navigator
       screenOptions={{
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            textAlign: 'center',
-            alignSelf: 'center',
-            flex: 1,
-          }
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: -4,
+          elevation: 0,
+          backgroundColor: '#ffffff',
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+          ...styles.shadow,
+          position: 'absolute',
+          backgroundColor: '#FFFFFF',
+          boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.23)',
+        },
+        headerShown: false,
+        tabBarLabel: "",
+        tabBarIcon: ({ focused, color, size }) => {
+          // custom icon component
+        }
       }}
     >
-      <Stack.Screen name='Home' component={HomeScreen} />
-      <Stack.Screen name='Categories' component={CategoriesScreen}/>
-      <Stack.Screen name='Recipe' component={RecipeScreen}/>
-      <Stack.Screen name='RecipesList' component={RecipesListScreen} />
-      <Stack.Screen name='Ingredient' component={IngredientScreen} />
-      <Stack.Screen name='Search' component={SearchScreen} />
-      <Stack.Screen name='IngredientsDetails' component={IngredientsDetailsScreen} />
-    </Stack.Navigator>
-  )
-} 
+
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Image
+                source={require('../../assets/icons/home.png')}
+                resizeMode='contain'
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? '#01B763' : '#498553',
+                }}
+              />
+            </View>
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Items"
+        component={ItemsScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Image
+                source={require('../../assets/icons/items.png')}
+                resizeMode='contain'
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? '#01B763' : '#498553',
+                }}
+              />
+            </View>
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Camera"
+        component={CameraScreen}
+        options={{
+          tabBarLabel: "",
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={[
+                styles.tabBarItem,
+                {
+                  backgroundColor: '#01B763',
+                  borderRadius: 50,
+                  position: 'absolute',
+                  width: 70,
+                  height: 70,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  shadowColor: '#01B763',
+                  transform: [{ translateY: -20 }],
+                  shadowOffset: {
+                    width: 0,
+                    height: 0,
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 3,
+                  elevation: 5,
+                },
+              ]}
+            >
+              <Image
+                source={require('../../assets/icons/camera.png')}
+                resizeMode='contain'
+                style={{
+                  width: 40,
+                  height: 40,
+                  tintColor: focused ? '#000000' : '#ffffff',
+
+                }}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Image
+                source={require('../../assets/icons/cart.png')}
+                resizeMode='contain'
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? '#01B763' : '#498553',
+                }}
+              />
+            </View>
+          )
+        }}
+      />
+      <Tab.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Image
+                source={require('../../assets/icons/login.png')}
+                resizeMode='contain'
+                style={{
+                  width: 28,
+                  height: 28,
+                  tintColor: focused ? '#01B763' : '#498553',
+                }}
+              />
+            </View>
+          )
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 
+const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 30,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 5,
+  }
+})
 
- const Drawer = createDrawerNavigator();
-
-function DrawerStack() {
-  return(
-    <Drawer.Navigator
-      drawerPosition='left'
-      initialRouteName='Main'
-      drawerStyle={{
-        width: 250
-      }}
-      screenOptions={{headerShown: false}}
-      drawerContent={({navigation})=> <DrawerContainer navigation={navigation}/>}
-    >
-      <Drawer.Screen name='Main' component={MainNavigator} />
-    </Drawer.Navigator>
-  )
-} 
-
-
- export default function AppContainer() {
-  return(
-    <NavigationContainer>
-      <DrawerStack/>
-    </NavigationContainer>
-  )
-} 
- 
-
-console.disableYellowBox = true;
+export default Tabs;
