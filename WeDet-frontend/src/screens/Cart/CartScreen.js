@@ -13,44 +13,36 @@ const CartScreen = ()=>{
         
         <View style={style.container}>
 
-            <View style={{fontSize: 25,fontWeight: "bold",marginTop:50,marginHorizontal:130}}>
-                <Text>Buy Products </Text>
+            <View style={{marginTop:40,marginHorizontal:120}}>
+                <Text style={{fontSize: 20,color:'#01B763'}}>Buy Products </Text>
             </View>
             <View style={[style.card1,style.productOne]}>
                 <Text>Glyphosate </Text>
             </View>
             <View style={[style.details,style.detailsOne]}>
-            {/* <Text>Rs.1000/= </Text> */}
-                
                 <Image style={style.image1} resizeMode="cover" source={require('../../../assets/Images/Glyphosate.png')}/>
+                <Text style={{fontSize: 15,fontWeight:'bold'}}>Price - Rs.4400/L </Text>
             </View>
             <View style={[style.card,style.productTwo]}>
-                <Text>Shepherd's Purse</Text>
+                <Text >Dicamba</Text>
             </View>
             <View style={[style.details,style.detailsOne]}>
                 
                 <Image style={style.image1} resizeMode="cover" source={require('../../../assets/Images/Dicamba.png')}/>
+                <Text style={{fontSize: 15,fontWeight:'bold'}}>Price - Rs.3000/L </Text>
             </View>
             <View style={[style.card,style.productThree]}>
-                <Text>Quickweed</Text>
+                <Text>MCPA</Text>
             </View>
             <View style={[style.details,style.detailsOne]}>
                 
                 <Image style={style.image1} resizeMode="cover" source={require('../../../assets/Images/MCPA.png')}/>
+                   
             </View>
-            <View style={[style.card,style.productFour]}>
-                <Text>Product 4</Text>
-            </View>
-            <View style={[style.details,style.detailsOne]}>
-                <Text>Details4  </Text>
-            </View>
-            <View style={{fontSize:20}}>
-                <Text>test  </Text>
+            <View>
+                <Text style={{fontSize: 15,fontWeight:'bold',marginHorizontal:20,marginBottom:10}}>Price - Rs.2500/L </Text> 
             </View>
             
-            
-            
-
          </View>
          </ScrollView>
 
@@ -59,16 +51,13 @@ const CartScreen = ()=>{
  const style = StyleSheet.create ({
     
     
-     container:{
-        
-     },
-
+    
      card1:{
         height:30,
         width:200,
         borderRadius:8,
         marginHorizontal:20,
-        marginTop:40
+        marginTop:30
         },
 
     card:{
@@ -104,7 +93,7 @@ const CartScreen = ()=>{
      productFour:{
         backgroundColor:'#D7EADD',
         padding:5,
-        marginTop:30
+        marginTop:40
 
      },
      details:{
