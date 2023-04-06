@@ -40,7 +40,7 @@ const CartScreen = ()=>{
                    
             </View>
             <View>
-                <Text style={{fontSize: 15,fontWeight:'bold',marginHorizontal:20,marginBottom:10}}>Price - Rs.2500/L </Text> 
+                <Text style={{fontSize: 15,fontWeight:'bold',marginHorizontal:20,marginBottom:80}}>Price - Rs.2500/L </Text> 
             </View>
             
          </View>
