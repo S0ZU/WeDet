@@ -1,12 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-//import your screen
-import Home from './src/screens/Home/HomeScreen';
+import React, { useState } from 'react';
+import GetStartedScreen from './src/screens/Login/LoginScreen';
+
+//import nav
+import Tabs from './src/navigation/AppNavigation';
+
 
 export default function App() {
+  const [completedGetStarted, setCompletedGetStarted] = useState(false);
+  if (!completedGetStarted) {
+    return <GetStartedScreen onComplete={() => setCompletedGetStarted(true)} />;
+  }
   return (
-    <Home/>
- );
+    <NavigationContainer>
+        <Tabs />
+    </NavigationContainer>
+  );
 }
-
