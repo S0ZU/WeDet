@@ -1,31 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, Pressable } from 'react-native';
-const Login = ({ onComplete }) => {
-    return (
+const Login = () => {
+    return(
         <SafeAreaView>
-
+        
             <ScrollView>
                 <View>
-                    <Image style={{ width: 200, height: 50, alignSelf: 'center', marginLeft: 30, marginTop: 60 }} resizeMode={'cover'} source={require('../../../assets/Images/Company.jpg')} />
+                    <Image style={{width:200, height:50,alignSelf:'center',marginLeft:30,marginTop:15,marginBottom:15}} resizeMode={'cover'} source={require('../../../assets/Images/Company.jpg')}/>
 
                 </View>
-                <View style={styles.container}>
-                    <Text style={{ fontSize: 35, fontWeight: 'bold', marginLeft: 20, marginTop: 10, }}>Say Goodbye to Weeds</Text>
-                    <Text style={{ alignSelf: 'flex-start', fontSize: 20, paddingLeft: 20, marginBottom: 50, marginLeft: 20, marginTop: 15 }}>Keep Your Crops Flourishing</Text>
-                    <View>
-                        <Image style={{ width: 300, height: 350, }} resizeMode={'cover'} source={require('../../../assets/Images/Home.png')} />
-                    </View>
+            <View style={styles.container}>
+                <Text style={{fontSize:35, fontWeight:'bold',marginLeft:20,marginTop:10,}}>Say Goodbye to Weeds</Text>
+                <Text style={{alignSelf:'flex-start', fontSize:20, paddingLeft:20,marginBottom:50,marginLeft:50,marginTop:15}}>Keep Your Crops Flourishing</Text>
+                <View>
+                    <Image style={{width:300, height:350,marginBottom:40}} resizeMode={'cover'} source={require('../../../assets/Images/Home.png')}/>
 
-                    <StatusBar style="auto" />
-                    <Pressable
-                        style={[styles.button, styles.buttonClose]}
-                        onPress={onComplete}>
-                        <Text style={styles.textStyle}>Get Started</Text>
-                    </Pressable>
                 </View>
+
+                <StatusBar style="auto" />
+                <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={onComplete}>
+              <Text style={styles.textStyle}>Get Started</Text>
+            </Pressable>
+            </View>
             </ScrollView>
         </SafeAreaView>
-
+        
     );
 }
 const styles = StyleSheet.create({
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         padding: 20,
         width: 200,
         elevation: 2,
-
+    
     },
     buttonClose: {
         marginTop: 20,
@@ -48,8 +49,9 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         textAlign: 'center',
-        fontSize: 27,
-
+        fontSize: 27 ,
+        fontWeight:'bold',
+        
     }
 });
 export default Login;
