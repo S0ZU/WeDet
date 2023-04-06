@@ -1,30 +1,41 @@
-import { StatusBar } from 'expo-status-bar'
-import React, { useCallback, useState, useRef } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Image, Platform } from 'react-native'
-import { Camera } from 'expo-camera'
-import * as ImagePicker from 'expo-image-picker'
-import { useNavigation } from '@react-navigation/native'
+
+import React, { useCallback, useState, useRef } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  Image,
+  Platform,
+  Dimensions,
+} from 'react-native';
+import { Camera } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+const Tab = createBottomTabNavigator();
 
 export default function CameraScreen() {
-  const [startCamera, setStartCamera] = useState(false)
-  const [selectedImage, setSelectedImage] = useState(null)
-  const navigation = useNavigation()
-  const cameraRef = useRef(null)
+  const [startCamera, setStartCamera] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const navigation = useNavigation();
+  const cameraRef = useRef(null);
 
   const __startCamera = useCallback(async () => {
-    const { status } = await Camera.requestCameraPermissionsAsync()
+    const { status } = await Camera.requestCameraPermissionsAsync();
     if (status === 'granted') {
-      // Start the camera
-      setStartCamera(true)
+      setStartCamera(true);
     } else {
-      Alert.alert('Access denied')
+      Alert.alert('Access denied');
     }
-  }, [navigation])
+  }, [navigation]);
 
   const __openGallery = useCallback(async () => {
     try {
       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
+      if (status != 'granted') {
         Alert.alert('Access denied');
         return;
       }
@@ -33,7 +44,7 @@ export default function CameraScreen() {
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
-        quality: 1
+        quality: 1,
       });
 
       if (!result.canceled) {
@@ -42,40 +53,76 @@ export default function CameraScreen() {
       }
     } catch (error) {
       console.error(error);
-      // handle error
     }
   }, [navigation]);
 
   const __takePicture = useCallback(async () => {
     try {
-      const photo = await cameraRef.current.takePictureAsync()
-      setSelectedImage(photo)
+      const photo = await cameraRef.current.takePictureAsync();
+      setSelectedImage(photo.assets);
+      setStartCamera(false);
+      Alert.alert(
+        'Picture Taken',
+        '',
+        [
+          {
+            text: 'Retake',
+            onPress: () => {
+              setSelectedImage(null);
+              setStartCamera(true);
+            },
+          },
+          {
+            text: 'Save',
+            onPress: () => {
+              // add logic to save the image
+            },
+          },
+        ],
+        { cancelable: false }
+      );
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }, [cameraRef])
+  }, [cameraRef, setSelectedImage, setStartCamera]);
 
   const __goBack = useCallback(() => {
-    setStartCamera(false)
-    setSelectedImage(null)
-  }, [])
+    setStartCamera(false);
+    setSelectedImage(null);
+  }, []);
+
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
 
   return (
     <View style={styles.container}>
       {startCamera ? (
         <View style={styles.cameraContainer}>
           <Camera
-            style={styles.camera}
-            ref={(r) => {
-              camera = r
+            style={{
+              width: windowWidth,
+              height: windowHeight,
+            }}
+            ref={(ref) => {
+              cameraRef.current = ref;
             }}
             ratio="4:3"
           ></Camera>
-          <TouchableOpacity
-            onPress={__goBack}
-            style={styles.backButton}
-          >
-            <Text style={styles.backButtonText}>Back</Text>
+          <TouchableOpacity onPress={__goBack} style={styles.backButton}>
+            <Image
+              source={require('../../../assets/icons/arrow.png')}
+              resizeMode="contain"
+              style={{
+                width: 30,
+                height: 20,
+                tintColor: '#ffffff',
+              }}
+            ></Image>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={__takePicture} style={styles.captureButton}>
+            <View style={styles.iconWrapper}>
+              <Image source={require('../../../assets/icons/capture.png')} style={styles.icon} />
+            </View>
           </TouchableOpacity>
         </View>
       ) : (
@@ -84,36 +131,29 @@ export default function CameraScreen() {
             flex: 1,
             backgroundColor: '#fff',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
-          <TouchableOpacity
-            onPress={__startCamera}
-            style={styles.button}
-          >
+          <TouchableOpacity onPress={__startCamera} style={styles.button}>
             <Text style={styles.buttonText}>Open Camera</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={__openGallery}
-            style={styles.button}
-          >
+          <TouchableOpacity onPress={__openGallery} style={styles.button}>
             <Text style={styles.buttonText}>Open Gallery</Text>
           </TouchableOpacity>
           {selectedImage && (
-            <Image
-              source={{ uri: selectedImage.uri }}
-              style={{
-                width: '100%', height: '80% ', marginTop: 20
-              }}
-            />
+            <View style={styles.previewContainer}>
+              <Image
+                source={{ assets: selectedImage }}
+                style={styles.previewImage}
+              />
+            </View>
           )}
-
         </View>
       )}
-      <StatusBar style="auto" />
     </View>
-  )
+  );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -130,6 +170,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 40,
     marginTop: 10,
+  }, buttonText: {
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
@@ -137,53 +178,43 @@ const styles = StyleSheet.create({
   cameraContainer: {
     flex: 1,
     width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'black'
-  },
-  camera: {
-    flex: 1,
-    width: '100%',
-    aspectRatio: 4 / 3
+    backgroundColor: 'black',
+    flexDirection: 'column',
   },
   backButton: {
     position: 'absolute',
-    top: 20,
+    top: 60,
     left: 20,
-    backgroundColor: '#01B763',
-    borderRadius: 5,
-    padding: 10,
-    fontWeight: 'bold',
+    zIndex: 2,
   },
-  backButtonIcon: {
-    fontSize: 20,
+  camera: {
+    flex: 1,
+    aspectRatio: 4 / 3,
+    width: '100%',
   },
   buttonText: {
+    fontSize: 20,
     color: '#fff',
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
-  backButtonText: {
-    color: '#000',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
+  captureButton: {
+    position: 'absolute',
+    bottom: 40,
     alignSelf: 'center',
-    margin: 20,
+    marginBottom: 50,
+    zIndex: 2,
   },
-  captureText: {
-    color: '#000',
-    fontSize: 14,
+  iconWrapper: {
+    borderWidth: 2,
+    borderRadius: 50,
+    borderColor: '#FFFFFF',
+    height: 60,
+    width: 60,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    width: 30,
+    height: 30,
   },
 });
