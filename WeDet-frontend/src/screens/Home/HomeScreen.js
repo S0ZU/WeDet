@@ -1,5 +1,6 @@
-import { SafeAreaView, ScrollView, StyleSheet, View, Image, TextInput, Text } from "react-native";
-//import { style } from './styles';
+import React from 'react';
+import { SafeAreaView, ScrollView, StyleSheet, style, View, Image, TextInput, Text } from "react-native";
+// import { styles } from './styles';
 
 const Home = ()=>{
     return (
@@ -7,60 +8,64 @@ const Home = ()=>{
            <ScrollView>
 
                 {/* Contains the logo, the search bar & the notification icon */}
-                <View style={style.topContainer}>   
+                <View style={styles.topContainer}>   
                     <View>
-                        <Image style={style.logo} resizeMode={'cover'} source={require('../../../assets/Images/wedet_lg.png')}/>  
+                        <Image style={styles.logo} resizeMode={'cover'} source={require('../../../assets/Images/wedet_lg.png')}/>  
                     </View> 
                     <View>
-                        <TextInput style={style.textInput} underlineColorAndroid='transparent' placeholder="Search"/>
+                        <TextInput style={styles.textInput} underlineColorAndroid='transparent' placeholder="Search"/>
                     </View>  
                     <View>
-                        <Image style={style.icon} resizeMode={'cover'} source={require('../../../assets/Images/alert.png')}/>    
+                        <Image style={styles.icon} resizeMode={'cover'} source={require('../../../assets/Images/alert.png')}/>    
                     </View>                 
                 </View>
 
                 {/* Images of vegetable fields */}
                 <View>
-                    <Image style={style.mainImage} resizeMode="cover" source={require('../../../assets/Images/vegefield.png')}/>
+                    <Image style={styles.mainImage} resizeMode="cover" source={require('../../../assets/Images/vegefield.png')}/>
                 </View> 
                 
                 {/* Images of several weeds */}
-                <View style={style.bottomContainer}>
+                <View style={styles.bottomContainer}>
                     <View>
-                        <Text style={{fontSize: 25, fontWeight: "bold"}}>Popular Weeds</Text>
+                        <Text style={styles.textStyle}>Popular Weeds</Text>
                     </View>
 
-                    <View style={style.weedContainer}>
+                    <View style={styles.weedContainer}>
                         <View>
-                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/apple_tree.png')}/>
+                            <Image style={styles.imageStyle} resizeMode="cover" source={require('../../../assets/Images/Bajiri.jpg')}/>
+                            <View>
+                                <Text style={{fontSize: 20, fontWeight: 'bold', marginLeft: 70, textAlign: 'auto'}}>Bajiri</Text>
+                            </View>
                         </View> 
                         <View>
-                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/mango_tree.png')}/>
+                            <Image style={styles.imageStyle} resizeMode="cover" source={require('../../../assets/Images/Neeramulliya.jpg')}/>
+                            <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'auto', marginLeft: 40}}>Neeramulliya</Text>
                         </View>                                           
                     </View>
 
-                    <View style={style.weedContainer}>
+                    <View style={styles.weedContainer}>
                         <View>
-                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/guava_tree.png')}/>
+                            <Image style={styles.imageStyle} resizeMode="cover" source={require('../../../assets/Images/Nidikumba.jpg')}/>
+                            <Text style={{fontSize: 20, fontWeight: 'bold', marginLeft: 50, textAlign: 'auto'}}>Nidikumba</Text>
                         </View> 
                         <View>
-                            <Image style={style.weeds} resizeMode="cover" source={require('../../../assets/Images/cocnut_tree.png')}/>
+                            <Image style={styles.imageStyle} resizeMode="cover" source={require('../../../assets/Images/Pigweed.png')}/>
+                            <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'auto', marginLeft: 60}}>Pigweed</Text>
                         </View>                                           
                     </View>
                 </View>     
-
             </ScrollView>
         </SafeAreaView>
     )
 };
 
-const style = StyleSheet.create ({
+const styles = StyleSheet.create ({
     topContainer: {
         flex: 1,
         flexDirection: "row",
         justifyContent: 'center',
         paddingTop: 40,
-        // backgroundColor: "#8fe3c3",
         maxHeight: 120
     },
     logo: {
@@ -88,12 +93,19 @@ const style = StyleSheet.create ({
         borderRadius: 5
     },
     bottomContainer: {
-      padding: 10  
+        paddingTop: 20,
+        paddingLeft: 15
     },
     weedContainer: {
-        flexDirection: "row"
+        flexDirection: "row",
+        paddingBottom: 10,
+        paddingTop: 10  
     },
-    weeds: {
+    textStyle: {
+        fontSize: 25,
+        fontWeight: 'bold'
+    },
+    imageStyle: {
         margin: 10,
         borderRadius: 10,
         height: 200,
