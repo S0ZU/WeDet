@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://fastapi-production-2594.up.railway.app",
+    baseURL: "https://fastapi-production-5d4f.up.railway.app",
 });
 
 export const predictImage = async (query) => {
