@@ -6,18 +6,15 @@ import GetStartedScreen from './src/screens/Login/LoginScreen';
 //import nav
 import Tabs from './src/navigation/AppNavigation';
 
-import Display from './src/screens/Display/DisplayScreen';
-
 export default function App() {
-  // const [completedGetStarted, setCompletedGetStarted] = useState(false);
-  // if (!completedGetStarted) {
-  //   return <GetStartedScreen onComplete={() => setCompletedGetStarted(true)} />;
-  // }
+  const [completedGetStarted, setCompletedGetStarted] = useState(false);
+  if (!completedGetStarted) {
+    return <GetStartedScreen onComplete={() => setCompletedGetStarted(true)} />;
+  }
   return (
-    // <NavigationContainer>
-    //     <Tabs />
-    // </NavigationContainer>
+    <NavigationContainer>
+        <Tabs />
+    </NavigationContainer>
 
-    <Display/>
   );
 }
