@@ -7,7 +7,6 @@ const api = axios.create({
 export const predictImage = async (query) => {
     try {
         const res = await api.post('/path', { msg: query });
-        console.log(res.data);
         return res.data;
     } catch (error) {
         console.log(error);

@@ -53,7 +53,7 @@ export default function CameraScreen() {
         setSelectedImage(result.assets);
         // Get the base64 representation of the image
         const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: FileSystem.EncodingType.Base64 });
-        const data = await predictImage(base64);
+        const data = await predictImage(base64);  
         console.log(data)
         setStartCamera(false);
       }
