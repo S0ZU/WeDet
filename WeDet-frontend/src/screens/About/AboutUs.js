@@ -1,5 +1,3 @@
-//import { NavigationContainer } from '@react-navigation/native';
-//import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -7,9 +5,8 @@ const AboutUs = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>About Us</Text>
-      <Text style={styles.text}>
-        Welcome to our mobile app! We are a team of developers who are passionate about creating
-        innovative and user-friendly apps that make your life easier.
+      <Text style={styles.subtitle}>
+        WE ARE A TEAM OF PASSIONATE DEVELOPERS WHO CREATE INNOVATIVE APPS THAT MAKE YOUR LIFE EASIER.
       </Text>
       <Text style={styles.text}>
         Our mobile app is built using React Native, a popular open-source framework for building
@@ -41,16 +38,28 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#1E88E5',
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#616161',
+    textAlign: 'center',
   },
   text: {
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 10,
     textAlign: 'justify',
+    color: '#616161',
+    lineHeight: 25,
   },
 });
 

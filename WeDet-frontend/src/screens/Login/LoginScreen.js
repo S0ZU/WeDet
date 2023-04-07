@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, Pressable } from 'react-native';
-const Login = () => {
+const Login = ({ onComplete }) =>{
     return(
         <SafeAreaView>
         

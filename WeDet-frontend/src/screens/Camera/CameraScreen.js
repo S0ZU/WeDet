@@ -14,6 +14,8 @@ import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as FileSystem from 'expo-file-system';
+import { predictImage } from '../../api';
 
 const Tab = createBottomTabNavigator();
 
@@ -49,6 +51,10 @@ export default function CameraScreen() {
 
       if (!result.canceled) {
         setSelectedImage(result.assets);
+        // Get the base64 representation of the image
+        const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: FileSystem.EncodingType.Base64 });
+        const data = await predictImage(base64);
+        console.log(data)
         setStartCamera(false);
       }
     } catch (error) {
